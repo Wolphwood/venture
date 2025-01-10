@@ -16,14 +16,14 @@ La structure est pensée au format JSON ou Objet Javascript.
 |-|-|-|-|
 | name | Nom du jeu | `String` | ❌ |
 | authors | Liste des auteurs | [`VentureAuthor[]`](#author) | ✅ |
-| version | Version du jeu | `String` `Number` | ✅ |
+| version | Version du jeu | `String Number` | ✅ |
 | tags | Tags | `String[]` | ❌ |
 | presentation | Présentation de la venture (clé de traduction `venture.presentation` si traduction disponible) | `String` | ❌ |
 | procedures | Procedures | [`VentureProcedure[]`](#ventureprocedure) | ❌ |
 | initialization | Initialization | [`VentureInitialization`](#ventureinitialization) | ❌ |
 | situations | Situations | [`VentureSituation[]`](#venturesituation) | ❌ |
 | translated | Traduction activée | `Boolean` | ✅ |
-| translations | Données de traduction | `Object<Key:String` `Number` `String[]` `Number[]>` | ✅ |
+| translations | Données de traduction | `Object<Key:String Number String[] Number[]>` | ✅ |
 
 ---
 
@@ -49,9 +49,9 @@ La structure est pensée au format JSON ou Objet Javascript.
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
 | situation | ID de la situation de départ | `String` | ❌ |
-| stats | Statistiques initiales | `Object<Key:Number` `Range>` | ✅ |
-| inventory | Inventaire initial | `Object<Key:Number` `Range>` | ✅ |
-| variable | Variables initiales | `Object<Key:Number` `Range>` | ✅ |
+| stats | Statistiques initiales | `Object<Key:Number Range>` | ✅ |
+| inventory | Inventaire initial | `Object<Key:Number Range>` | ✅ |
+| variable | Variables initiales | `Object<Key:Number Range>` | ✅ |
 
 ---
 
@@ -59,7 +59,7 @@ La structure est pensée au format JSON ou Objet Javascript.
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
 | id | ID de la procédure | `String` | ❌ |
-| requirements | Pré-requis pour autoriser la procédure à s'exécuter | [`ExpressionString`](#expressionstring)` `[`VentureRequirement[]`](#venturerequirement) | ✅ |
+| requirements | Pré-requis pour autoriser la procédure à s'exécuter | [`ExpressionString`](#expressionstring) [`VentureRequirement[]`](#venturerequirement) | ✅ |
 | actions | Actions à effectuer | [`VentureAction[]`](#ventureaction) | ❌ |
 
 ---
@@ -78,9 +78,9 @@ La structure est pensée au format JSON ou Objet Javascript.
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
 | actions | Actions liées à l'option | [`VentureAction[]`](#ventureaction) | ✅ |
-| requirements | Pré-requis pour autoriser l'option | [`ExpressionString`](#expressionstring)` `[`VentureRequirement[]`](#venturerequirement) | ✅ |
+| requirements | Pré-requis pour autoriser l'option | [`ExpressionString`](#expressionstring) [`VentureRequirement[]`](#venturerequirement) | ✅ |
 | procedures | Liste des procédures à exécuter pour l'option | [`VentureProcedure[]`](#ventureprocedure) | ✅ |
-| hidden | Conditions pour cacher l'option | [`ExpressionString`](#expressionstring)` `[`VentureRequirement[]`](#venturerequirement) | ✅ |
+| hidden | Conditions pour cacher l'option | [`ExpressionString`](#expressionstring) [`VentureRequirement[]`](#venturerequirement) | ✅ |
 
 ---
 
@@ -90,6 +90,7 @@ La structure est pensée au format JSON ou Objet Javascript.
 | url | URL de l'image | `String` | ✅ |
 | base64 | Image encodée en base64 | `String` | ✅ |
 | file | Fichier local de l'image | `String` | ✅ |  
+
 _Priorité `URL > FILE > BASE64`_
 
 ---
@@ -97,41 +98,41 @@ _Priorité `URL > FILE > BASE64`_
 # VentureRequirement  
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
-| type | Type de la condition | `"AND"` `"OR"` `"comparison"` | ❌ |
+| type | Type de la condition | `"AND" "OR" "comparison"` | ❌ |
 
 ### VentureRequirement AND/OR
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
-| requirements | Liste des pré-requis imbriqués pour cette condition | [`ExpressionString`](#expressionstring)` `[`VentureRequirement[]`](#venturerequirement) | ❌ |
+| requirements | Liste des pré-requis imbriqués pour cette condition | [`ExpressionString`](#expressionstring) [`VentureRequirement[]`](#venturerequirement) | ❌ |
 
 ### VentureRequirement Comparison
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
-| left | Valeur ou expression à gauche de la comparaison | `String` `Number` `Range` | ❌ |
-| right | Valeur ou expression à droite de la comparaison | `String` `Number` `Range` | ❌ |
+| left | Valeur ou expression à gauche de la comparaison | `String Number Range` | ❌ |
+| right | Valeur ou expression à droite de la comparaison | `String Number Range` | ❌ |
 | operator | Opérateur de comparaison | [`Operator`](#operator) | ❌ (default: "set") |
 | precision | Précision numérique pour la comparaison | `Number` | ✅ |
-| round | Méthode d'arrondi pour la comparaison | `"round"` `"ceil"` `"floor"` | ✅ |
+| round | Méthode d'arrondi pour la comparaison | `"round" "ceil" "floor"` | ✅ |
 
 ---
 
 # VentureAction  
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
-| type | Type d'action | `"inventory"` `"condition"` `"stat"` `"goto"` `"variable"` `"procedure"` `"reward"` | ❌ |
-| conditions | Conditions pour autoriser l'exécution de l'action | [`ExpressionString`](#expressionstring)` `[`VentureRequirement[]`](#venturerequirement) | ✅ |
+| type | Type d'action | `"inventory" "condition" "stat" "goto" "variable" "procedure" "reward"` | ❌ |
+| conditions | Conditions pour autoriser l'exécution de l'action | [`ExpressionString`](#expressionstring) [`VentureRequirement[]`](#venturerequirement) | ✅ |
 
 ### VentureAction Inventory
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
 | item | Nom ou ID de l'objet | `String` | ❌ |
-| count | Quantité de l'objet | `Number` `Range` | ✅ (default: 1) |
-| action | Type d'action sur l'inventaire | `"set"` `"add"` `"remove"` | ✅ (default: "add") |
+| count | Quantité de l'objet | `Number Range` | ✅ (default: 1) |
+| action | Type d'action sur l'inventaire | `"set" "add" "remove"` | ✅ (default: "add") |
 
 ### VentureAction Condition
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
-| requirements | Conditions pour déterminer le résultat | [`ExpressionString`](#expressionstring)` `[`VentureRequirement[]`](#venturerequirement) | ❌ |
+| requirements | Conditions pour déterminer le résultat | [`ExpressionString`](#expressionstring) [`VentureRequirement[]`](#venturerequirement) | ❌ |
 | success | Actions à exécuter en cas de succès | [`VentureAction[]`](#ventureaction) | ❌ |
 | fail | Actions à exécuter en cas d'échec | [`VentureAction[]`](#ventureaction) | ❌ |
 
@@ -139,10 +140,10 @@ _Priorité `URL > FILE > BASE64`_
 | Nom | Description | Type | Optionnel |
 |-|-|-|-|
 | name | Nom ou ID de la statistique | `String` | ❌ |
-| value | Valeur ou plage de la modification | `Number` `Range` | ❌ |
+| value | Valeur ou plage de la modification | `Number Range` | ❌ |
 | operator | Opérateur pour la modification | [`Operator`](#operator) | ✅ (default: "set") |
 | precision | Précision numérique pour la modification | `Number` | ✅ |
-| round | Méthode d'arrondi pour la modification | `"round"` `"ceil"` `"floor"` | ✅ |
+| round | Méthode d'arrondi pour la modification | `"round" "ceil" "floor"` | ✅ |
 
 ---
 
@@ -158,6 +159,8 @@ _Priorité `URL > FILE > BASE64`_
 5. **Valeurs et variables** :
    - **Constantes numériques** (10, 3.14)
    - **Variables du système** (stat.name, inventory.itemname, variable.key)
+   - **Variables**
+     - `random` : Donne une valeur aléatoire `[0-1)`
    
 6. **Parenthèses** : Pour regrouper des sous-expressions et gérer la priorité.
 
@@ -183,4 +186,4 @@ _Priorité `URL > FILE > BASE64`_
 | min | Valeur minimale du champ | `Number` | ❌ |
 | max | Valeur maximale du champ | `Number` | ❌ |
 | precision | Nombre de décimales pour les valeurs générées | `Number` | ✅ |
-| round | Méthode d'arrondi pour la plage de valeurs | `"round"` `"ceil"` `"floor"` | ✅ |
+| round | Méthode d'arrondi pour la plage de valeurs | `"round" "ceil" "floor"` | ✅ |
